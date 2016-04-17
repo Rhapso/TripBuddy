@@ -12,4 +12,5 @@
     <string name="title_activity_activity_details">ActivityDetails</string>
     <string name="title_activity_test_acitivity">TestAcitivity</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_itineraire">ItineraireActivity</string>
 </resources>

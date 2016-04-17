@@ -12,48 +12,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-public class ActivityDetails extends AppCompatActivity {
+public class ItineraireActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activity_details);
+        setContentView(R.layout.activity_itineraire);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String value = extras.getString("ASSET_ID");
-            int id = Integer.parseInt(value);
-
-
-            MyRessources res = new MyRessources();
-
-//            View view = findViewById(R.id.nav_view);
-//            Snackbar.make(view, "Val: "+res.get(id).getNom(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
-            TextView tv = (TextView) findViewById(R.id.textView2);
-            tv.setText(res.get(id).getNom());
-
-            ImageView iv = (ImageView) findViewById(R.id.imageView2);
-            iv.setImageResource(res.get(id).getId());
-
-            TextView tv2 = (TextView) findViewById(R.id.textView3);
-            tv2.setText(res.get(id).getInfo());
-
-        }
-
-
-        DataHolder dh = DataHolder.getInstance();
-            View view = findViewById(R.id.nav_view);
-            Snackbar.make(view, "Val: "+dh.getNom(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
-
-
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -62,7 +39,7 @@ public class ActivityDetails extends AppCompatActivity {
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationItemHandler(this));
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -78,7 +55,7 @@ public class ActivityDetails extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_details, menu);
+        getMenuInflater().inflate(R.menu.itineraire, menu);
         return true;
     }
 
@@ -97,4 +74,28 @@ public class ActivityDetails extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
