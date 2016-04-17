@@ -61,7 +61,7 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
 
     public void createButton() {
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.unoMainLayout);
-        int baseSize = 100;
+        int baseSize = 150;
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);

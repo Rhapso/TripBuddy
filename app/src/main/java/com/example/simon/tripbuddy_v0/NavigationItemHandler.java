@@ -27,8 +27,9 @@ public class NavigationItemHandler implements NavigationView.OnNavigationItemSel
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         View view = parent.findViewById(R.id.nav_view);
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_itineraire) {
+            Intent intent = new Intent(parent, ItineraireActivity.class);
+            parent.startActivity(intent);
         } else if (id == R.id.nav_gallery) {
             Snackbar.make(view, "Nav Gallery", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         } else if (id == R.id.nav_slideshow) {

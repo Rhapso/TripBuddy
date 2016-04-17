@@ -1,5 +1,7 @@
 package com.example.simon.tripbuddy_v0;
 
+import android.graphics.Color;
+
 /**
  * Created by simon on 16/04/16.
  */
@@ -28,5 +30,6 @@ public class Lieux {
     public String getInfo() {
         return info;
     }
+
 
 }

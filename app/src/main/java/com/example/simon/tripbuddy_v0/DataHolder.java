@@ -20,6 +20,17 @@ public class DataHolder {
         return itineraire;
     }
 
+
+    private DataHolder() {
+        itineraire = new ArrayList<>();
+        MyRessources res = new MyRessources();
+        itineraire.add(res.get(0));
+        itineraire.add(res.get(1));
+        itineraire.add(res.get(2));
+        itineraire.add(res.get(3));
+
+    }
+
     public void setData(String nom) {
         this.nom = nom;
     }

@@ -39,7 +39,7 @@ public class Grille {
             grille[i+1][j+1].isOccupe = true;
           grille[i][j].width = w;
           grille[i][j].height = h;
-          System.out.println("w: "+w+"h: "+h);
+          //System.out.println("w: "+w+"h: "+h);
         }
       }
     }

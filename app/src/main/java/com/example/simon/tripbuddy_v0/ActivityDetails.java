@@ -17,6 +17,9 @@ import android.widget.TextView;
 
 public class ActivityDetails extends AppCompatActivity {
 
+    private int idLieux;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +32,7 @@ public class ActivityDetails extends AppCompatActivity {
         if (extras != null) {
             String value = extras.getString("ASSET_ID");
             int id = Integer.parseInt(value);
-
+            idLieux = id;
 
             MyRessources res = new MyRessources();
 
@@ -48,13 +51,6 @@ public class ActivityDetails extends AppCompatActivity {
         }
 
 
-        DataHolder dh = DataHolder.getInstance();
-            View view = findViewById(R.id.nav_view);
-            Snackbar.make(view, "Val: "+dh.getNom(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -63,6 +59,19 @@ public class ActivityDetails extends AppCompatActivity {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationItemHandler(this));
+
+
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab2);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyRessources res = new MyRessources();
+                DataHolder.getInstance().addEtape(res.get(idLieux));
+                Snackbar.make(view, res.get(idLieux).getNom()+" ajouté à votre itineraire!", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            }
+        });
     }
 
     @Override

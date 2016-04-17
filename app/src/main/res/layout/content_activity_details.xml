@@ -54,15 +54,9 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="45dp"
             android:textSize="20sp"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="70dp"/>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ajouter"
-            android:maxWidth="2dp"
-            android:maxHeight="2dp"
-            android:layout_alignBottom="@+id/textView3" />
 
     </RelativeLayout>
 
