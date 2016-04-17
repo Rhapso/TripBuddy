@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:layout_marginTop="50dp">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.example.simon.tripbuddy_v0.ActivityDetails"
+        tools:showIn="@layout/app_bar_activity_details">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/imageView2"
+            android:layout_centerHorizontal="true"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:minHeight="200dp"
+            android:maxHeight="200dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textView3"
+            android:layout_gravity="top"
+            android:textStyle="normal"
+            android:gravity="top"
+            android:minHeight="200dp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="45dp"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ajouter"
+            android:maxWidth="2dp"
+            android:maxHeight="2dp"
+            android:layout_alignBottom="@+id/textView3" />
+
+    </RelativeLayout>
+
+
+</ScrollView>
