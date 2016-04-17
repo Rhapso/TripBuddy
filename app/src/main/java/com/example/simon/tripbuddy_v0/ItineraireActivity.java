@@ -18,11 +18,13 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 
@@ -59,23 +61,20 @@ public class ItineraireActivity extends AppCompatActivity {
     }
 
 
-    void createList() {
+    public void createList() {
         DataHolder dh = DataHolder.getInstance();
-//        View view = findViewById(R.id.nav_view);
-//        Snackbar.make(view, "SizeIt: "+dh.getItineraire().size(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
-
-
-
         ListView list = (ListView) findViewById(R.id.layoutineraire);
-        list.setAdapter(new MyAdapter(this, dh.getItineraire()));
-
+        list.removeViews(0, list.getChildCount());
+        list.setAdapter(new MyAdapter(this, dh.getItineraire(), this));
     }
 
     private class MyAdapter extends ArrayAdapter<Lieux> {
 
-        public MyAdapter(Context context, ArrayList<Lieux> itineraire) {
+        private ItineraireActivity parent;
+
+        public MyAdapter(Context context, ArrayList<Lieux> itineraire, ItineraireActivity parent) {
             super(context, -1, -1, itineraire);
+            this.parent = parent;
         }
 
         @Override
@@ -85,30 +84,29 @@ public class ItineraireActivity extends AppCompatActivity {
                     AbsListView.LayoutParams.MATCH_PARENT,
                     AbsListView.LayoutParams.WRAP_CONTENT));
 
-
-
-
             swipeLayout = new SwipeLayout(ItineraireActivity.this);
             LinearLayout ll = new LinearLayout(ItineraireActivity.this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
 
-
-            ImageView iw = new ImageView(ItineraireActivity.this);
+            ImageButton iw = new ImageButton(ItineraireActivity.this);
             iw.setImageResource(R.drawable.ic_menu_delete);
-            ll.addView(iw, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            ll.addView(iw, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            iw.setOnClickListener(new OnDeleteHandler(this.parent, position));
 
-            ImageView iw2 = new ImageView(ItineraireActivity.this);
+            ImageButton iw2 = new ImageButton(ItineraireActivity.this);
             iw2.setImageResource(R.drawable.ic_keyboard_arrow_up);
-            ll.addView(iw2, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            ll.addView(iw2, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            iw2.setOnClickListener(new OnUpHandler(this.parent, position));
 
-
-
+            ImageButton iw3 = new ImageButton(ItineraireActivity.this);
+            iw3.setImageResource(R.drawable.ic_expand_more);
+            ll.addView(iw3, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            iw3.setOnClickListener(new OnDownHandler(this.parent, position));
 
 
             swipeLayout.addView(ll, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
             LinearLayout ll2 = new LinearLayout(ItineraireActivity.this);
-
 
             TextView listText = new TextView(ItineraireActivity.this);
             listText.setPadding(20,20, 20, 20);
@@ -158,4 +156,74 @@ public class ItineraireActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+}
+
+class OnDeleteHandler implements View.OnClickListener {
+
+    private ItineraireActivity parent;
+    private int position;
+
+    public OnDeleteHandler(ItineraireActivity parent, int position) {
+        this.position = position;
+        this.parent = parent;
+    }
+
+    @Override
+    public void onClick(View v) {
+        DataHolder dh = DataHolder.getInstance();
+        dh.getItineraire().remove(position);
+        parent.createList();
+        Toast.makeText(v.getContext(), "Delete Item "+position, Toast.LENGTH_SHORT).show();
+    }
+}
+
+class OnUpHandler implements View.OnClickListener {
+
+    private ItineraireActivity parent;
+    private int position;
+
+    public OnUpHandler(ItineraireActivity parent, int position) {
+        this.position = position;
+        this.parent = parent;
+    }
+
+    @Override
+    public void onClick(View v) {
+        DataHolder dh = DataHolder.getInstance();
+
+        if(position>0) {
+            Lieux l1 = dh.getItineraire().get(position);
+            Lieux l2 = dh.getItineraire().get(position-1);
+            dh.getItineraire().set(position-1, l1);
+            dh.getItineraire().set(position, l2);
+            parent.createList();
+        }
+
+    }
+}
+
+
+class OnDownHandler implements View.OnClickListener {
+
+    private ItineraireActivity parent;
+    private int position;
+
+    public OnDownHandler(ItineraireActivity parent, int position) {
+        this.position = position;
+        this.parent = parent;
+    }
+
+    @Override
+    public void onClick(View v) {
+        DataHolder dh = DataHolder.getInstance();
+
+        if(position<dh.getItineraire().size()-1) {
+            Lieux l1 = dh.getItineraire().get(position);
+            Lieux l2 = dh.getItineraire().get(position+1);
+            dh.getItineraire().set(position+1, l1);
+            dh.getItineraire().set(position, l2);
+            parent.createList();
+        }
+
+    }
 }
