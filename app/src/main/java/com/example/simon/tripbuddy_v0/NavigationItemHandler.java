@@ -31,7 +31,8 @@ public class NavigationItemHandler implements NavigationView.OnNavigationItemSel
             Intent intent = new Intent(parent, ItineraireActivity.class);
             parent.startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-            Snackbar.make(view, "Nav Gallery", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            Intent intent = new Intent(parent, ActivityMain.class);
+            parent.startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(parent, DummyContent.class);
             parent.startActivity(intent);
