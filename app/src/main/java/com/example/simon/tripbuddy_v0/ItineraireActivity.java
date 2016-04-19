@@ -71,7 +71,7 @@ public class ItineraireActivity extends AppCompatActivity {
     public void createPropositionList(){
         ListView list = (ListView) findViewById(R.id.layoutproposedineraire);
         list.removeViews(0, list.getChildCount());
-        //list.setAdapter(new MyAdapter(this, dh.getItineraire(), this));
+        list.setAdapter(new ProposedVisitsAdapter(this));
     }
 
     private class ProposedVisitsAdapter extends ArrayAdapter<Lieux>{
