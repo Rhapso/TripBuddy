@@ -47,6 +47,7 @@ public class ItineraireActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         createItineraireList();
+        createPropositionList();
 //        swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
 
 
