@@ -19,7 +19,6 @@ public class ActivityDetails extends AppCompatActivity {
 
     private int idLieux;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

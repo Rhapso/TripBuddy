@@ -1,6 +1,7 @@
 package com.example.simon.tripbuddy_v0;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -37,7 +38,7 @@ public class ItineraireActivity extends AppCompatActivity {
 
     String[] wordlist = new String[] { "a", "b", "c" };
     private SwipeLayout swipeLayout;
-
+    Random r = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +84,22 @@ public class ItineraireActivity extends AppCompatActivity {
         }
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            Lieux item = this.getItem(position);
             ImageButton b = new ImageButton(ItineraireActivity.this);
-            b.setImageResource(this.getItem(position).getId());
+            b.setImageResource(item.getId());
+            b.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            b.setPadding(0, 0, 0, 0);
+            b.setTag(r.nextInt(this.getCount()));
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    View view = findViewById(R.id.nav_view);
+                    Snackbar.make(view, "Col: "+v.getTag(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Intent intent = new Intent(ItineraireActivity.this, ActivityDetails.class);
+                    intent.putExtra("ASSET_ID", v.getTag().toString());
+                    startActivity(intent);
+                }
+            });
             return b;
         }
     }
