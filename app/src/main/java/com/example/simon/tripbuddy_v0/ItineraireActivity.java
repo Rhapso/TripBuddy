@@ -46,9 +46,7 @@ public class ItineraireActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        createList();
-
-
+        createItineraireList();
 //        swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
 
 
@@ -63,18 +61,38 @@ public class ItineraireActivity extends AppCompatActivity {
     }
 
 
-    public void createList() {
+    public void createItineraireList() {
         DataHolder dh = DataHolder.getInstance();
         ListView list = (ListView) findViewById(R.id.layoutineraire);
         list.removeViews(0, list.getChildCount());
-        list.setAdapter(new MyAdapter(this, dh.getItineraire(), this));
+        list.setAdapter(new ItineraireAdapter(this, dh.getItineraire(), this));
     }
 
-    private class MyAdapter extends ArrayAdapter<Lieux> {
+    public void createPropositionList(){
+        ListView list = (ListView) findViewById(R.id.layoutproposedineraire);
+        list.removeViews(0, list.getChildCount());
+        //list.setAdapter(new MyAdapter(this, dh.getItineraire(), this));
+    }
+
+    private class ProposedVisitsAdapter extends ArrayAdapter<Lieux>{
+        public ProposedVisitsAdapter(Context context) {
+            super(context, -1);
+            MyRessources res = new MyRessources();
+            this.addAll(res);
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ImageButton b = new ImageButton(ItineraireActivity.this);
+            b.setImageResource(this.getItem(position).getId());
+            return b;
+        }
+    }
+
+    private class ItineraireAdapter extends ArrayAdapter<Lieux> {
 
         private ItineraireActivity parent;
 
-        public MyAdapter(Context context, ArrayList<Lieux> itineraire, ItineraireActivity parent) {
+        public ItineraireAdapter(Context context, ArrayList<Lieux> itineraire, ItineraireActivity parent) {
             super(context, -1, -1, itineraire);
             this.parent = parent;
         }
@@ -210,7 +228,7 @@ class OnDeleteHandler implements View.OnClickListener {
     public void onClick(View v) {
         DataHolder dh = DataHolder.getInstance();
         dh.getItineraire().remove(position);
-        parent.createList();
+        parent.createItineraireList();
         Toast.makeText(v.getContext(), "Delete Item "+position, Toast.LENGTH_SHORT).show();
     }
 }
@@ -234,7 +252,7 @@ class OnUpHandler implements View.OnClickListener {
             Lieux l2 = dh.getItineraire().get(position-1);
             dh.getItineraire().set(position-1, l1);
             dh.getItineraire().set(position, l2);
-            parent.createList();
+            parent.createItineraireList();
         }
 
     }
@@ -260,7 +278,7 @@ class OnDownHandler implements View.OnClickListener {
             Lieux l2 = dh.getItineraire().get(position+1);
             dh.getItineraire().set(position+1, l1);
             dh.getItineraire().set(position, l2);
-            parent.createList();
+            parent.createItineraireList();
         }
 
     }
