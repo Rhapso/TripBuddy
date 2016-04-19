@@ -2,10 +2,12 @@ package com.example.simon.tripbuddy_v0;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -107,6 +109,7 @@ public class ItineraireActivity extends AppCompatActivity {
             swipeLayout.addView(ll, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
             LinearLayout ll2 = new LinearLayout(ItineraireActivity.this);
+            ll2.setOrientation(LinearLayout.VERTICAL);
 
             TextView listText = new TextView(ItineraireActivity.this);
             listText.setPadding(20,20, 20, 20);
@@ -120,6 +123,41 @@ public class ItineraireActivity extends AppCompatActivity {
             swipeLayout.addView(ll2, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
             listLayout.addView(swipeLayout, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+
+            LinearLayout ll3 = new LinearLayout(ItineraireActivity.this);
+            ll3.setOrientation(LinearLayout.HORIZONTAL);
+            ll3.setPadding(0, 0, 0, 20);
+
+            int id;
+            int duree;
+            if(new Random().nextBoolean()){
+                id = R.drawable.ic_directions_walk;
+                duree = new Random().nextInt(15);
+            } else {
+                id = R.drawable.ic_tram;
+                duree = new Random().nextInt(30)+15;
+            }
+
+
+            ImageView iw4 = new ImageView(ItineraireActivity.this);
+            iw4.setImageResource(id);
+            LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(30, 30);
+            layoutParams.gravity= Gravity.CENTER;
+            layoutParams.leftMargin = 80;
+            iw4.setLayoutParams(layoutParams);
+            ll3.addView(iw4);
+
+
+            TextView listText_duree = new TextView(ItineraireActivity.this);
+            listText_duree.setPadding(15,0, 0, 0);
+            listText_duree.setTextSize(15);
+            listText_duree.setTypeface(null, Typeface.ITALIC);
+
+            listText_duree.setText(duree+" min");
+            ll3.addView(listText_duree);
+            ll2.addView(ll3);
+
             return listLayout;
         }
     }
