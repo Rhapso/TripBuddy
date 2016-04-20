@@ -9,10 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Pierre on 20/04/2016.
  */
 public class Note extends AppCompatActivity {
+
+    private ArrayList<String> data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +24,7 @@ public class Note extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        data = new ArrayList<String>(data);
 
 //        swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
         Bundle extras = getIntent().getExtras();
@@ -41,5 +46,21 @@ public class Note extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationItemHandler(this));
 
+    }
+
+    public void addText(String s){
+        data.add("text#"+s);
+    }
+
+    public void addImage(String s){
+        data.add("imag#"+s);
+    }
+
+    public void addVideo(String s){
+        data.add("vide#"+s);
+    }
+
+    public void addPosition(String s){
+        data.add("posi#"+s);
     }
 }
