@@ -33,14 +33,16 @@ public class NavigationItemHandler implements NavigationView.OnNavigationItemSel
         } else if (id == R.id.nav_gallery) {
             Intent intent = new Intent(parent, ActivityMain.class);
             parent.startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {
-            Intent intent = new Intent(parent, DummyContent.class);
+        } else if (id == R.id.nav_research){
+            Intent intent = new Intent(parent, Research.class);
+            parent.startActivity(intent);
+        } else if (id == R.id.nav_notes){
+            Intent intent = new Intent(parent, Note.class);
+            parent.startActivity(intent);
+        } else if (id == R.id.nav_research) {
+            Intent intent = new Intent(parent, Research.class);
             parent.startActivity(intent);
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

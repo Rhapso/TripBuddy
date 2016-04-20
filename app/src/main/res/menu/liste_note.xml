@@ -2,12 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list_note">
     <item
-        android:title="Revenir au menu"
         android:id="@+id/nav_mur"
-        android:icon="@drawable/ic_keyboard_left"/>
-    <item android:title="Mes notes"/>
-
-
+        android:icon="@drawable/ic_keyboard_left"
+        android:title="Revenir au menu" />
+    <item android:title="Mes notes" />
 
 
 </menu>

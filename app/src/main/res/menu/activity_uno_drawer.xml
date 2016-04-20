@@ -18,10 +18,6 @@
             android:id="@+id/nav_notes"
             android:icon="@android:drawable/ic_input_get"
             android:title="Notes ▶" />
-        <ExpandableView
-            android:id="@+id/lvExp"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
