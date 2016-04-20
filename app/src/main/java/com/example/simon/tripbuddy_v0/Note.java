@@ -2,11 +2,17 @@ package com.example.simon.tripbuddy_v0;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,7 +30,7 @@ public class Note extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        data = new ArrayList<String>(data);
+        data = new ArrayList<String>();
 
 //        swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
         Bundle extras = getIntent().getExtras();
@@ -34,6 +40,8 @@ public class Note extends AppCompatActivity {
 
 
         }
+
+        findViewById(R.id.addText).setOnClickListener(new TextButtonListener());
 
 
 
@@ -62,5 +70,20 @@ public class Note extends AppCompatActivity {
 
     public void addPosition(String s){
         data.add("posi#"+s);
+    }
+
+    public class TextButtonListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            EditText textInput = new EditText(v.getContext());
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            //textInput.setLayoutParams(lp);
+            textInput.setHint("Type your text");
+
+            LinearLayout l = (LinearLayout) ((View) v.getParent().getParent()).findViewById(R.id.layoutnote);
+            l.addView(textInput, lp);
+        }
     }
 }

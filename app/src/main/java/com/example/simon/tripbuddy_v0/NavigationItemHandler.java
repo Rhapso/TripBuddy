@@ -34,7 +34,7 @@ public class NavigationItemHandler implements NavigationView.OnNavigationItemSel
             Intent intent = new Intent(parent, ActivityMain.class);
             parent.startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
-            Intent intent = new Intent(parent, DummyContent.class);
+            Intent intent = new Intent(parent, Note.class);
             parent.startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
