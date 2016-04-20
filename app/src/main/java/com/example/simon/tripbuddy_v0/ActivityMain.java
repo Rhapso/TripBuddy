@@ -108,10 +108,6 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
-
-
-
-
     }
 
     @Override
@@ -145,8 +141,6 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
     @Override
     public void onStart() {

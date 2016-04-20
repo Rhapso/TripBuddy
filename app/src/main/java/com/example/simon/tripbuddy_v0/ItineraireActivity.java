@@ -158,12 +158,12 @@ public class ItineraireActivity extends AppCompatActivity {
             ll3.addView(listText_duree);
             ll2.addView(ll3);
 
-            listLayout.setTag(r.nextInt(this.getCount()));
-            listLayout.setOnClickListener(new View.OnClickListener() {
+            ll2.setTag(getItem(position).getResourceId());
+            ll2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     View view = findViewById(R.id.nav_view);
-                    Snackbar.make(view, "Col: "+v.getTag(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Snackbar.make(view, "Col: "+ v.getTag(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                     Intent intent = new Intent(ItineraireActivity.this, ActivityDetails.class);
                     intent.putExtra("ASSET_ID", v.getTag().toString());
                     startActivity(intent);

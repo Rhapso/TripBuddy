@@ -7,13 +7,13 @@ import android.graphics.Color;
  */
 public class Lieux {
 
-
-
+    private int listId;
     private int id;
     private String nom;
     private String info;
 
     public Lieux(int id, String nom, String info) {
+        this.listId = 0;
         this.id = id;
         this.nom = nom;
         this.info = info;
@@ -31,5 +31,7 @@ public class Lieux {
         return info;
     }
 
+    public int getResourceId() { return listId;}
+    public void setResourceId(int id){ this.listId = id;}
 
 }
