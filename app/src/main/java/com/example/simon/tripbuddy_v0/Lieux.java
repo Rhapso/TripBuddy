@@ -1,7 +1,5 @@
 package com.example.simon.tripbuddy_v0;
 
-import android.graphics.Color;
-
 /**
  * Created by simon on 16/04/16.
  */
@@ -15,14 +13,16 @@ public class Lieux {
     private static final int BUILDINGS = 0;
     private static final int RESTAURANTS = 1;
     private static final int BARS = 2;
-    private static final int SPA = 3;
+    private static final int SPA = 2;
 
 
-    public Lieux(int id, String nom, String info) {
+
+    public Lieux(int id,int category, String nom, String info) {
         this.listId = 0;
         this.id = id;
         this.nom = nom;
         this.info = info;
+        this.category = category;
     }
 
     public int getId() {
