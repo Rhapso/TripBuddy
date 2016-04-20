@@ -11,6 +11,12 @@ public class Lieux {
     private int id;
     private String nom;
     private String info;
+    private int category;
+    private static final int BUILDINGS = 0;
+    private static final int RESTAURANTS = 1;
+    private static final int BARS = 2;
+    private static final int SPA = 3;
+
 
     public Lieux(int id, String nom, String info) {
         this.listId = 0;

@@ -13,4 +13,6 @@
     <string name="title_activity_test_acitivity">TestAcitivity</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_itineraire">ItineraireActivity</string>
+    <string name="title_activity_research">Research</string>
+    <string name="title_activity_research_result">ResearchResult</string>
 </resources>

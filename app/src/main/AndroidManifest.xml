@@ -38,7 +38,15 @@
         <activity
             android:name=".ItineraireActivity"
             android:label="@string/title_activity_itineraire"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Research"
+            android:label="@string/title_activity_research"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ResearchResult"
+            android:label="@string/title_activity_research_result"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
