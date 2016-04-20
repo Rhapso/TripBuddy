@@ -37,13 +37,16 @@ public class ActivityDetails extends AppCompatActivity {
 //            Snackbar.make(view, "Val: "+res.get(id).getNom(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
             TextView tv = (TextView) findViewById(R.id.textView2);
-            tv.setText(res.get(id).getNom());
+            if(tv != null)
+                tv.setText(res.get(id).getNom());
 
             ImageView iv = (ImageView) findViewById(R.id.imageView2);
-            iv.setImageResource(res.get(id).getId());
+            if(iv != null)
+                 iv.setImageResource(res.get(id).getId());
 
             TextView tv2 = (TextView) findViewById(R.id.textView3);
-            tv2.setText(res.get(id).getInfo());
+            if(tv2 != null)
+                tv2.setText(res.get(id).getInfo());
 
         }
 
@@ -51,33 +54,39 @@ public class ActivityDetails extends AppCompatActivity {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        if(drawer != null)
+            drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationItemHandler(this));
+        if(navigationView != null)
+            navigationView.setNavigationItemSelectedListener(new NavigationItemHandler(this));
 
 
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab2);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MyRessources res = new MyRessources();
-                DataHolder.getInstance().addEtape(res.get(idLieux));
-                Snackbar.make(view, res.get(idLieux).getNom()+" ajouté à votre itineraire!", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            }
-        });
+        if(fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MyRessources res = new MyRessources();
+                    DataHolder.getInstance().addEtape(res.get(idLieux));
+                    Snackbar.make(view, res.get(idLieux).getNom() + " ajouté à votre itineraire!", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                }
+            });
+        }
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        if(drawer != null) {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
