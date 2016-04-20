@@ -38,6 +38,10 @@
         <activity
             android:name=".ItineraireActivity"
             android:label="@string/title_activity_itineraire"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Research"
+            android:label="@string/title_activity_research"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
