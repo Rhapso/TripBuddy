@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.simon.tripbuddy_v0">
-
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -52,7 +53,6 @@
             android:name=".ResearchResult"
             android:label="@string/title_activity_research_result"
             android:theme="@style/AppTheme.NoActionBar"/>
->>>>>>> 3ae6afa5f6a06b792b52da9b7914603f2ec34088
     </application>
 
 </manifest>
