@@ -134,7 +134,7 @@ public class Note extends AppCompatActivity {
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             view.setOnLongClickListener(new NoteDataOnLongClickListener());
 
-            l.addView(l, l.getChildCount()-1, lp);
+            l.addView(view, l.getChildCount()-1, lp);
         }else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
             LinearLayout l = (LinearLayout) findViewById(R.id.layoutnote);
@@ -143,7 +143,7 @@ public class Note extends AppCompatActivity {
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             view.setOnLongClickListener(new NoteDataOnLongClickListener());
-            l.addView(l, l.getChildCount()-1, lp);
+            l.addView(view, l.getChildCount()-1, lp);
         }
     }
 
