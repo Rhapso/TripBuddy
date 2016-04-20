@@ -1,5 +1,6 @@
 package com.example.simon.tripbuddy_v0;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -29,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.content.ClipDescription;
 import com.daimajia.swipe.SwipeLayout;
 
 import java.util.ArrayList;
@@ -98,6 +101,21 @@ public class ItineraireActivity extends AppCompatActivity {
                     Intent intent = new Intent(ItineraireActivity.this, ActivityDetails.class);
                     intent.putExtra("ASSET_ID", v.getTag().toString());
                     startActivity(intent);
+                }
+            });
+            b.setOnLongClickListener(new View.OnLongClickListener() {
+                // Defines the one method for the interface, which is called when the View is long-clicked
+                public boolean onLongClick(View v) {
+
+                    ClipData.Item item = new ClipData.Item((CharSequence)v.getTag());
+                    String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+
+                    ClipData dragData = new ClipData(v.getTag().toString(),mimeTypes, item);
+                    View.DragShadowBuilder myShadow = new View.DragShadowBuilder(v);
+
+                    v.startDrag(dragData,myShadow,null,0);
+                    return true;
+
                 }
             });
             return b;
@@ -196,6 +214,11 @@ public class ItineraireActivity extends AppCompatActivity {
         }
     }
 
+    public class MyDragShadowBuilder extends View.DragShadowBuilder{
+        MyDragShadowBuilder(View v){
+
+        }
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
