@@ -42,6 +42,9 @@ public class NavigationItemHandler implements NavigationView.OnNavigationItemSel
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.nav_research){
+            Intent intent = new Intent(parent, Research.class);
+            parent.startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) parent.findViewById(R.id.drawer_layout);
