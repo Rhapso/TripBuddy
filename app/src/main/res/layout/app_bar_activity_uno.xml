@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:paddingLeft="0dp"
-    tools:context=".ActivityMain">
+    tools:context=".ActivityMain"
+    tools:showIn="@layout/content_activity_uno">
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"

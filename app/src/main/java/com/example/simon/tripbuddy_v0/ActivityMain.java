@@ -22,6 +22,9 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class ActivityMain extends AppCompatActivity implements View.OnClickListener {
@@ -33,23 +36,16 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
     private GoogleApiClient client;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_uno);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         createButton();
-
-
-        ExpandableListView elvw = new ExpandableListView(this);
-        
-
-
-
-
-
-
 
 
 
@@ -72,6 +68,8 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
+
 
 
     public void createButton() {
