@@ -1,6 +1,5 @@
 package com.example.simon.tripbuddy_v0;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -31,7 +30,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.content.ClipDescription;
 import com.daimajia.swipe.SwipeLayout;
 
 import java.util.ArrayList;
@@ -51,7 +49,6 @@ public class ItineraireActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         createItineraireList();
-        createPropositionList();
 //        swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
 
 
@@ -71,55 +68,6 @@ public class ItineraireActivity extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.layoutineraire);
         list.removeViews(0, list.getChildCount());
         list.setAdapter(new ItineraireAdapter(this, dh.getItineraire(), this));
-    }
-
-    public void createPropositionList(){
-        ListView list = (ListView) findViewById(R.id.layoutproposedineraire);
-        list.removeViews(0, list.getChildCount());
-        list.setAdapter(new ProposedVisitsAdapter(this));
-    }
-
-    private class ProposedVisitsAdapter extends ArrayAdapter<Lieux>{
-        public ProposedVisitsAdapter(Context context) {
-            super(context, -1);
-            MyRessources res = new MyRessources();
-            this.addAll(res);
-        }
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            Lieux item = this.getItem(position);
-            ImageButton b = new ImageButton(ItineraireActivity.this);
-            b.setImageResource(item.getId());
-            b.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            b.setPadding(0, 0, 0, 0);
-            b.setTag(r.nextInt(this.getCount()));
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    View view = findViewById(R.id.nav_view);
-                    Snackbar.make(view, "Col: "+v.getTag(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                    Intent intent = new Intent(ItineraireActivity.this, ActivityDetails.class);
-                    intent.putExtra("ASSET_ID", v.getTag().toString());
-                    startActivity(intent);
-                }
-            });
-            b.setOnLongClickListener(new View.OnLongClickListener() {
-                // Defines the one method for the interface, which is called when the View is long-clicked
-                public boolean onLongClick(View v) {
-
-                    ClipData.Item item = new ClipData.Item((CharSequence)v.getTag());
-                    String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
-
-                    ClipData dragData = new ClipData(v.getTag().toString(),mimeTypes, item);
-                    View.DragShadowBuilder myShadow = new View.DragShadowBuilder(v);
-
-                    v.startDrag(dragData,myShadow,null,0);
-                    return true;
-
-                }
-            });
-            return b;
-        }
     }
 
     private class ItineraireAdapter extends ArrayAdapter<Lieux> {
@@ -210,15 +158,21 @@ public class ItineraireActivity extends AppCompatActivity {
             ll3.addView(listText_duree);
             ll2.addView(ll3);
 
+            listLayout.setTag(r.nextInt(this.getCount()));
+            listLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    View view = findViewById(R.id.nav_view);
+                    Snackbar.make(view, "Col: "+v.getTag(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Intent intent = new Intent(ItineraireActivity.this, ActivityDetails.class);
+                    intent.putExtra("ASSET_ID", v.getTag().toString());
+                    startActivity(intent);
+                }
+            });
             return listLayout;
         }
     }
 
-    public class MyDragShadowBuilder extends View.DragShadowBuilder{
-        MyDragShadowBuilder(View v){
-
-        }
-    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -25,13 +25,8 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
         <include layout="@layout/content_itineraire"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".5"/>
-        <include layout="@layout/proposed_itineraire"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".5"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 
