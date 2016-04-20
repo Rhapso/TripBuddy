@@ -12,8 +12,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -40,6 +40,23 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         createButton();
+
+
+        ExpandableListView elvw = new ExpandableListView(this);
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         DataHolder dh = DataHolder.getInstance();
         dh.setData("Hey jude!");
@@ -116,21 +133,6 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
