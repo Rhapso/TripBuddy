@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TripBuddy_V0</string>
+    <string name="app_name">TripBuddy</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -10,9 +10,10 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_activity_details">ActivityDetails</string>
-    <string name="title_activity_test_acitivity">TestAcitivity</string>
+    <string name="title_activity_test_acitivity">TestActivity</string>
     <string name="title_activity_test">TestActivity</string>
-    <string name="title_activity_itineraire">ItineraireActivity</string>
-    <string name="title_activity_research">Research</string>
-    <string name="title_activity_research_result">ResearchResult</string>
+    <string name="title_activity_note">Note</string>
+    <string name="title_activity_itineraire">Itineraire</string>
+    <string name="title_activity_research">Recherche</string>
+    <string name="title_activity_research_result">Resultat recherche</string>
 </resources>

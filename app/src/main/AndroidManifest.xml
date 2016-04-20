@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.simon.tripbuddy_v0">
-
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -38,7 +39,12 @@
         <activity
             android:name=".ItineraireActivity"
             android:label="@string/title_activity_itineraire"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Note"
+            android:label="@string/title_activity_note"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".Research"
             android:label="@string/title_activity_research"
