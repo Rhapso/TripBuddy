@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputEditText;
@@ -21,16 +22,21 @@ import android.widget.TextView;
 import 	android.graphics.Bitmap;
 import android.widget.VideoView;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Pierre on 20/04/2016.
  */
 public class Note extends AppCompatActivity {
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_VIDEO_CAPTURE = 1;
 
     private ArrayList<String> data;
+    private ArrayList<String> photos = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,8 +107,21 @@ public class Note extends AppCompatActivity {
         public void onClick(View v) {
             if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                // Ensure that there's a camera activity to handle the intent
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                    // Create the File where the photo should go
+                    File photoFile = null;
+                    try {
+                        photoFile = createImageFile();
+                    } catch (IOException ex) {
+                        // Error occurred while creating the File
+                    }
+                    // Continue only if the File was successfully created
+                    if (photoFile != null) {
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                                Uri.fromFile(photoFile));
+                        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                    }
                 }
             }
         }
@@ -123,13 +142,12 @@ public class Note extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+            File img = new File(photos.get(photos.size()));
 
             LinearLayout l = (LinearLayout) findViewById(R.id.layoutnote);
             ImageView view = new ImageView(l.getContext());
-            view.setImageBitmap(imageBitmap);
+            view.setImageURI(Uri.fromFile(img));
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             view.setOnLongClickListener(new NoteDataOnLongClickListener());
@@ -145,6 +163,23 @@ public class Note extends AppCompatActivity {
             view.setOnLongClickListener(new NoteDataOnLongClickListener());
             l.addView(view, l.getChildCount()-1, lp);
         }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        photos.add("file:" + image.getAbsolutePath());
+        return image;
     }
 
     public class NoteDataOnLongClickListener implements View.OnLongClickListener{
