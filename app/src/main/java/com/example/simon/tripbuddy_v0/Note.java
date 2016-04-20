@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputEditText;
@@ -22,21 +21,16 @@ import android.widget.TextView;
 import 	android.graphics.Bitmap;
 import android.widget.VideoView;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Pierre on 20/04/2016.
  */
 public class Note extends AppCompatActivity {
-    static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_VIDEO_CAPTURE = 1;
 
     private ArrayList<String> data;
-    private ArrayList<String> photos = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +45,34 @@ public class Note extends AppCompatActivity {
         if (extras != null) {
             String value = extras.getString("ASSET_ID");
             int id = Integer.parseInt(value);
+
+            if(id == 1){
+                EditText title = (EditText) findViewById(R.id.notetitle);
+                title.setText("Visite du louvre");
+                EditText textInput1 = new EditText(this.getBaseContext());
+                ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                textInput1.setHint("Type your text");
+                textInput1.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elementum, dui a facilisis aliquam, enim velit consequat nisl, id placerat diam dolor ac ex. Duis libero turpis, aliquet vel pellentesque ac, auctor vitae leo. Nulla id turpis a massa malesuada convallis. Sed vitae mattis elit. Quisque vitae convallis massa, ac eleifend enim. Nulla diam nulla, pharetra ut volutpat vel, vehicula sit amet ex. Pellentesque vitae tincidunt sem. Duis accumsan dictum lorem, quis sodales risus rhoncus vel.");
+                textInput1.setSingleLine(false);
+                textInput1.setOnLongClickListener(new NoteDataOnLongClickListener());
+                LinearLayout l = (LinearLayout) (findViewById(R.id.layoutnote));
+                l.addView(textInput1, l.getChildCount()-1, lp);
+
+                ImageView view = new ImageView(l.getContext());
+                view.setImageResource(R.drawable.louvre2);
+                view.setOnLongClickListener(new NoteDataOnLongClickListener());
+
+                l.addView(view, l.getChildCount()-1, lp);
+
+                EditText textInput2 = new EditText(this.getBaseContext());
+
+                textInput2.setHint("Type your text");
+                textInput2.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elementum, dui a facilisis aliquam, enim velit consequat nisl, id placerat diam dolor ac ex. Duis libero turpis, aliquet vel pellentesque ac, auctor vitae leo. Nulla id turpis a massa malesuada convallis. Sed vitae mattis elit. Quisque vitae convallis massa, ac eleifend enim. Nulla diam nulla, pharetra ut volutpat vel, vehicula sit amet ex. Pellentesque vitae tincidunt sem. Duis accumsan dictum lorem, quis sodales risus rhoncus vel.");
+                textInput2.setSingleLine(false);
+                textInput2.setOnLongClickListener(new NoteDataOnLongClickListener());
+                l.addView(textInput1, l.getChildCount()-1, lp);
+            }
         }
 
         findViewById(R.id.addText).setOnClickListener(new TextButtonListener());
@@ -107,21 +129,8 @@ public class Note extends AppCompatActivity {
         public void onClick(View v) {
             if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                // Ensure that there's a camera activity to handle the intent
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    // Create the File where the photo should go
-                    File photoFile = null;
-                    try {
-                        photoFile = createImageFile();
-                    } catch (IOException ex) {
-                        // Error occurred while creating the File
-                    }
-                    // Continue only if the File was successfully created
-                    if (photoFile != null) {
-                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                Uri.fromFile(photoFile));
-                        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-                    }
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 }
             }
         }
@@ -142,12 +151,13 @@ public class Note extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-            File img = new File(photos.get(photos.size()));
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
 
             LinearLayout l = (LinearLayout) findViewById(R.id.layoutnote);
             ImageView view = new ImageView(l.getContext());
-            view.setImageURI(Uri.fromFile(img));
+            view.setImageBitmap(imageBitmap);
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             view.setOnLongClickListener(new NoteDataOnLongClickListener());
@@ -165,22 +175,6 @@ public class Note extends AppCompatActivity {
         }
     }
 
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        photos.add("file:" + image.getAbsolutePath());
-        return image;
-    }
 
     public class NoteDataOnLongClickListener implements View.OnLongClickListener{
         @Override
