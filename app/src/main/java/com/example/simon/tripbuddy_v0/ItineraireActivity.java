@@ -2,23 +2,18 @@ package com.example.simon.tripbuddy_v0;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.DragEvent;
-import android.view.Gravity;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
@@ -26,7 +21,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,9 +31,6 @@ import java.util.Random;
 
 public class ItineraireActivity extends AppCompatActivity {
 
-    String[] wordlist = new String[] { "a", "b", "c" };
-    private SwipeLayout swipeLayout;
-    Random r = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +77,7 @@ public class ItineraireActivity extends AppCompatActivity {
                     AbsListView.LayoutParams.MATCH_PARENT,
                     AbsListView.LayoutParams.WRAP_CONTENT));
 
-            swipeLayout = new SwipeLayout(ItineraireActivity.this);
+            SwipeLayout swipeLayout = new SwipeLayout(ItineraireActivity.this);
             LinearLayout ll = new LinearLayout(ItineraireActivity.this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -184,13 +175,6 @@ public class ItineraireActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.itineraire, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -273,6 +257,5 @@ class OnDownHandler implements View.OnClickListener {
             dh.getItineraire().set(position, l2);
             parent.createItineraireList();
         }
-
     }
 }
