@@ -38,11 +38,21 @@
         <activity
             android:name=".ItineraireActivity"
             android:label="@string/title_activity_itineraire"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Note"
             android:label="@string/title_activity_note"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".Research"
+            android:label="@string/title_activity_research"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ResearchResult"
+            android:label="@string/title_activity_research_result"
+            android:theme="@style/AppTheme.NoActionBar"/>
+>>>>>>> 3ae6afa5f6a06b792b52da9b7914603f2ec34088
     </application>
 
 </manifest>

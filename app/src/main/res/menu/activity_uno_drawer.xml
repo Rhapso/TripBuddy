@@ -3,33 +3,47 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_gallery"
+            android:icon="@android:drawable/ic_dialog_dialer"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_research"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Recherche" />
+        <item
             android:id="@+id/nav_itineraire"
             android:icon="@android:drawable/ic_dialog_map"
             android:title="Itineraire" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Mur" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_notes"
+            android:icon="@android:drawable/ic_input_get"
+            android:title="Notes ▶" />
+        <ExpandableView
+            android:id="@+id/lvExp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Vos villes">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_city_add"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Ajouter une destination" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_city_1"
+                android:icon="@drawable/ic_done_black"
+                android:title="Paris" />
+            <item
+                android:id="@+id/nav_city_2"
+                android:title="San Fransisco" />
+            <item
+                android:id="@+id/nav_city_3"
+                android:title="Hong-Kong" />
         </menu>
     </item>
 
