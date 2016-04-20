@@ -2,6 +2,7 @@ package com.example.simon.tripbuddy_v0;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
@@ -18,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import 	android.graphics.Bitmap;
+import android.widget.VideoView;
+
 import java.util.ArrayList;
 
 /**
@@ -25,6 +28,7 @@ import java.util.ArrayList;
  */
 public class Note extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_VIDEO_CAPTURE = 1;
 
     private ArrayList<String> data;
     @Override
@@ -47,8 +51,7 @@ public class Note extends AppCompatActivity {
 
         findViewById(R.id.addText).setOnClickListener(new TextButtonListener());
         findViewById(R.id.addPic).setOnClickListener(new ImageButtonListener());
-
-
+        findViewById(R.id.addVideo).setOnClickListener(new CameraButtonListener());
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -98,11 +101,23 @@ public class Note extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            System.out.println("test");
             if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                }
+            }
+        }
+    }
+
+    public class CameraButtonListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+                Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
                 }
             }
         }
@@ -121,6 +136,14 @@ public class Note extends AppCompatActivity {
             view.setOnLongClickListener(new NoteDataOnLongClickListener());
 
             l.addView(view, l.getChildCount()-1, lp);
+        }else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
+            Uri videoUri = data.getData();
+            LinearLayout l = (LinearLayout) findViewById(R.id.layoutnote);
+            VideoView view = new VideoView(l.getContext());
+            view.setVideoURI(videoUri);
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            view.setOnLongClickListener(new NoteDataOnLongClickListener());
         }
     }
 
