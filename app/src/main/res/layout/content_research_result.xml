@@ -44,7 +44,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/restaurant"/>
+                    android:src="@drawable/restaurant"
+                    android:contentDescription="Icone restaurant"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,7 +91,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/bar"/>
+                    android:src="@drawable/bar"
+                    android:contentDescription="Icone categorie bar"/>
                 <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -140,7 +142,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/museum"/>
+                    android:src="@drawable/museum"
+                    android:contentDescription="Icone categorie musee"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -186,7 +189,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/spa"/>
+                    android:src="@drawable/spa"
+                    android:contentDescription="Icone categorie bien etre"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

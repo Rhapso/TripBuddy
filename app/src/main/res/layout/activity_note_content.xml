@@ -41,7 +41,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/pic"
-                android:id="@+id/addPic"/>
+                android:id="@+id/addPic"
+                android:contentDescription="Ajouter note photo"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
@@ -51,7 +52,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/camera"
-                android:id="@+id/addVideo"/>
+                android:id="@+id/addVideo"
+                android:contentDescription="Ajouter note videos"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
@@ -61,7 +63,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/map"
-                android:id="@+id/addPosition"/>
+                android:id="@+id/addPosition"
+                android:contentDescription="Ajouter note position"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
@@ -71,7 +74,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/icon_pen"
-                android:id="@+id/addText"/>
+                android:id="@+id/addText"
+                android:contentDescription="Ajouter note texte"/>
         </LinearLayout>
     </LinearLayout>
 
